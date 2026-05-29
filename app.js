@@ -189,6 +189,8 @@ function guardarReporteLocal() {
     const departamento = document.getElementById("departamento").value.trim();
     const ubicacionEvento = document.getElementById("ubicacionEvento").value.trim();
     const descripcion = document.getElementById("descripcion").value.trim();
+    const archivoFoto =
+    document.getElementById("fotos").files[0];
 
     if (!fecha || !nombre || !departamento || !ubicacionEvento || !descripcion) {
         document.getElementById("estadoFormulario").innerHTML =
