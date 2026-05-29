@@ -192,3 +192,95 @@ function mostrarReportesPendientes() {
         );
     };
 }
+const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbxkN-CTCpydz61mYa2CgISSDAUuAOh8SShjjsWcDXadTnE3gwhop7oOBP92liN4_KDfwA/exec";
+
+function sincronizarPendientes() {
+
+    if (!navigator.onLine) {
+        document.getElementById("estadoFormulario").innerHTML =
+            "<span class='error'>Sin conexión. No se puede sincronizar.</span>";
+        return;
+    }
+
+    if (!db) {
+        document.getElementById("estadoFormulario").innerHTML =
+            "<span class='error'>Base local no disponible.</span>";
+        return;
+    }
+
+    const transaction = db.transaction(
+        [STORE_NAME],
+        "readonly"
+    );
+
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.getAll();
+
+    request.onsuccess = async function() {
+
+        const reportes = request.result;
+
+        if (reportes.length === 0) {
+            document.getElementById("estadoFormulario").innerHTML =
+                "<span class='ok'>No hay reportes pendientes.</span>";
+            return;
+        }
+
+        document.getElementById("estadoFormulario").innerHTML =
+            "Sincronizando " + reportes.length + " reporte(s)...";
+
+        for (const reporte of reportes) {
+
+            try {
+
+                const respuesta = await fetch(
+                    APPS_SCRIPT_URL,
+                    {
+                        method: "POST",
+                        body: JSON.stringify(reporte)
+                    }
+                );
+
+                const resultado = await respuesta.json();
+
+                if (resultado.ok === true) {
+                    eliminarReporteSinConfirmar(reporte.id);
+                } else {
+                    throw new Error(resultado.error || "Error desconocido");
+                }
+
+            } catch (error) {
+
+                console.error("Error sincronizando reporte", error);
+
+                document.getElementById("estadoFormulario").innerHTML =
+                    "<span class='error'>Error sincronizando. Revise la conexión.</span>";
+
+                return;
+            }
+        }
+
+        document.getElementById("estadoFormulario").innerHTML =
+            "<span class='ok'>Sincronización completada.</span>";
+
+        contarPendientes();
+        mostrarReportesPendientes();
+    };
+}
+
+function eliminarReporteSinConfirmar(id) {
+
+    const transaction = db.transaction(
+        [STORE_NAME],
+        "readwrite"
+    );
+
+    const store = transaction.objectStore(STORE_NAME);
+
+    store.delete(id);
+
+    transaction.oncomplete = function() {
+        contarPendientes();
+    };
+}
