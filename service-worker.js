@@ -1,4 +1,4 @@
-const CACHE_NAME = "environmental-form-pwa-v4";
+const CACHE_NAME = "environmental-form-pwa-v5";
 
 const FILES_TO_CACHE = [
     "./",
@@ -6,6 +6,7 @@ const FILES_TO_CACHE = [
     "./styles.css",
     "./app.js",
     "./db.js",
+    "./proj4.js",
     "./logo-CMOC-Odin.png"
 ];
 
