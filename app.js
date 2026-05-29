@@ -182,14 +182,3 @@ function convertirLatLonAUTM17S(lat, lon) {
         northing: resultado[1]
     };
 }
-function generarCoordenada() {
-    alert("Botón Generar coordenada funcionando");
-}
-
-function fijarCoordenada() {
-    alert("Botón Fijar coordenada funcionando");
-}
-
-function reiniciarCoordenada() {
-    alert("Botón Reiniciar funcionando");
-}
