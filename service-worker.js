@@ -1,4 +1,4 @@
-const CACHE_NAME = "environmental-form-pwa-v3";
+const CACHE_NAME = "environmental-form-pwa-v4";
 
 const FILES_TO_CACHE = [
     "./",
@@ -48,8 +48,9 @@ self.addEventListener("fetch", function(event) {
     }
 
     event.respondWith(
-        caches.match(event.request).then(function(response) {
-            return response || fetch(event.request);
-        })
+        caches.match(event.request, { ignoreSearch: true })
+            .then(function(response) {
+                return response || fetch(event.request);
+            })
     );
 });
