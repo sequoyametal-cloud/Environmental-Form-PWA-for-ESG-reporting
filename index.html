@@ -14,9 +14,13 @@
 <div class="container">
 
     <div class="card header">
+
         <h1>Tarjeta CONTROL AMBIENTAL 环境控制卡</h1>
-        <p id="estadoConexion">Verificando conexión...</p>
-        <p id="contadorPendientes">Reportes pendientes: 0</p>
+
+        <div class="logo-box">
+            <img src="logo.png" alt="Logo CMOC Odin">
+        </div>
+
     </div>
 
     <div class="card">
@@ -46,8 +50,36 @@
             <option>Otros 其他</option>
         </select>
 
-        <label>Ubicación del Evento / 行为发生的地点或位置 *</label>
+        <label>Ubicación del Evento (Área / Sector Específico) / 事件地点 *</label>
         <input type="text" id="ubicacionEvento">
+
+        <div class="box">
+
+            <div class="gps-buttons">
+                <button onclick="generarCoordenada()">
+                    Generar coordenada<br>生成坐标
+                </button>
+
+                <button onclick="fijarCoordenada()">
+                    Fijar coordenada<br>设置坐标
+                </button>
+
+                <button onclick="reiniciarCoordenada()">
+                    Reiniciar<br>重启
+                </button>
+            </div>
+
+            <p id="estadoGPS">Coordenada no generada.</p>
+
+            <p>
+                <b>Coordenada fijada:</b><br>
+                X: <span id="xTexto">No disponible</span><br>
+                Y: <span id="yTexto">No disponible</span><br>
+                Altitud: <span id="altitudTexto">No disponible</span><br>
+                Error GPS: <span id="errorTexto">No disponible</span>
+            </p>
+
+        </div>
 
         <label>Tipo de Observación / 观察类型</label>
         <select id="tipoObservacion">
@@ -62,6 +94,7 @@
 
         <label>Categoría / 类别</label>
         <select id="categoria">
+            <option value="">Seleccione / 请选择</option>
             <option>Agua y drenajes / 水体与排水系统</option>
             <option>Suelo y erosión / 土壤与侵蚀</option>
             <option>Residuos y sustancias peligrosas / 废弃物与危险物质</option>
@@ -92,14 +125,6 @@
             <option>Planta de Beneficio / 选矿厂</option>
         </select>
 
-        <div class="box">
-            <p><b>Coordenadas:</b></p>
-            <p>X: <span id="xTexto">No disponible</span></p>
-            <p>Y: <span id="yTexto">No disponible</span></p>
-            <p>Altitud: <span id="altitudTexto">No disponible</span></p>
-            <p>Error GPS: <span id="errorTexto">No disponible</span></p>
-        </div>
-
         <label>Registro Fotográfico / 上传照片</label>
         <input type="file" id="fotos" accept="image/*" multiple>
 
@@ -113,6 +138,8 @@
 
         <div class="box">
             <p id="estadoFormulario">Formulario listo.</p>
+            <p id="estadoConexion">Verificando conexión...</p>
+            <p id="contadorPendientes">Reportes pendientes: 0</p>
         </div>
 
     </div>
