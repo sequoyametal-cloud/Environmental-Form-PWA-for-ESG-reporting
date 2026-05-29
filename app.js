@@ -249,3 +249,24 @@ if (archivoFoto) {
 }
 
 }
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", function() {
+
+        navigator.serviceWorker.register("service-worker.js")
+            .then(function(registration) {
+                console.log(
+                    "Service Worker registrado:",
+                    registration.scope
+                );
+            })
+            .catch(function(error) {
+                console.error(
+                    "Error registrando Service Worker:",
+                    error
+                );
+            });
+
+    });
+
+}
