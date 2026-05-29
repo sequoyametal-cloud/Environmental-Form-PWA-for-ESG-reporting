@@ -1,97 +1,122 @@
 body{
     margin:0;
-    padding:15px;
-    background:#f2f4f7;
+    padding:24px;
+    background:#e8f5e9;
     font-family:Arial, Helvetica, sans-serif;
 }
 
 .container{
-    max-width:1000px;
+    max-width:950px;
     margin:auto;
 }
 
 .card{
     background:white;
-    border-radius:10px;
-    padding:20px;
-    margin-bottom:20px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    border-radius:8px;
+    padding:26px;
+    margin-bottom:22px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.14);
 }
 
 .header{
+    border-top:10px solid #43a047;
     text-align:center;
 }
 
+.logo-box{
+    margin-top:24px;
+    padding:22px;
+    border-radius:8px;
+    box-shadow:0 1px 6px rgba(0,0,0,0.12);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-box img{
+    max-width:420px;
+    width:80%;
+    height:auto;
+}
+
 h1{
-    margin-top:0;
+    margin:0;
+    font-size:28px;
 }
 
 label{
     display:block;
-    margin-top:15px;
-    margin-bottom:5px;
+    margin-top:18px;
+    margin-bottom:7px;
     font-weight:bold;
+    font-size:16px;
 }
 
 input,
 select,
 textarea{
     width:100%;
-    padding:10px;
-    border:1px solid #cccccc;
+    padding:12px;
+    border:1px solid #999;
     border-radius:5px;
     box-sizing:border-box;
+    font-size:15px;
 }
 
 textarea{
-    min-height:120px;
+    min-height:110px;
     resize:vertical;
 }
 
 .box{
-    background:#f7f7f7;
-    border:1px solid #dddddd;
-    border-radius:6px;
-    padding:10px;
-    margin-top:15px;
+    background:#f9fff9;
+    border:1px solid #c8e6c9;
+    border-radius:8px;
+    padding:18px;
+    margin-top:20px;
 }
 
-.btn-primary{
-    width:100%;
-    padding:15px;
-    margin-top:20px;
-    border:none;
-    border-radius:6px;
-    background:#1976d2;
+.gps-buttons{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+}
+
+.gps-buttons button,
+.btn-primary,
+.btn-secondary{
+    background:#43a047;
     color:white;
-    font-size:16px;
+    border:1px solid #2e7d32;
+    border-radius:7px;
+    font-weight:bold;
     cursor:pointer;
 }
 
+.gps-buttons button{
+    padding:14px 22px;
+    font-size:15px;
+}
+
+.btn-primary,
 .btn-secondary{
     width:100%;
     padding:15px;
-    margin-top:10px;
-    border:none;
-    border-radius:6px;
-    background:#555555;
-    color:white;
+    margin-top:14px;
     font-size:16px;
-    cursor:pointer;
 }
 
-.btn-primary:hover{
-    opacity:0.9;
+.btn-secondary{
+    background:#2e7d32;
 }
 
-.btn-secondary:hover{
-    opacity:0.9;
-}
-
-#estadoConexion{
+.ok{
+    color:green;
     font-weight:bold;
 }
 
-#estadoFormulario{
+.error{
+    color:red;
     font-weight:bold;
 }
