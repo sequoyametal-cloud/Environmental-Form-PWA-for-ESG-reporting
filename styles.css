@@ -13,8 +13,8 @@ body{
 .card{
     background:white;
     border-radius:8px;
-    padding:26px;
-    margin-bottom:22px;
+    padding:20px;
+    margin:0 20px 22px 20px;
     box-shadow:0 2px 8px rgba(0,0,0,0.14);
 }
 
