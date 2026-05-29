@@ -125,3 +125,55 @@ document.addEventListener(
     "DOMContentLoaded",
     iniciarBaseDatos
 );
+function mostrarReportesPendientes() {
+
+    if (!db) return;
+
+    const transaction = db.transaction(
+        [STORE_NAME],
+        "readonly"
+    );
+
+    const store = transaction.objectStore(STORE_NAME);
+
+    const request = store.getAll();
+
+    request.onsuccess = function() {
+
+        const lista =
+            document.getElementById("listaPendientes");
+
+        if (!lista) return;
+
+        const reportes = request.result;
+
+        if (reportes.length === 0) {
+            lista.innerHTML =
+                "<p>No existen reportes pendientes.</p>";
+            return;
+        }
+
+        let html = "<h3>Reportes pendientes</h3>";
+
+        reportes.forEach(function(reporte) {
+
+            html +=
+                "<div class='box'>" +
+                "<b>ID local:</b> " + reporte.id + "<br>" +
+                "<b>Fecha:</b> " + (reporte.fecha || "") + "<br>" +
+                "<b>Nombre:</b> " + (reporte.nombre || "") + "<br>" +
+                "<b>Ubicación:</b> " + (reporte.ubicacionEvento || "") + "<br>" +
+                "<b>Descripción:</b> " + (reporte.descripcion || "") +
+                "</div>";
+        });
+
+        lista.innerHTML = html;
+    };
+
+    request.onerror = function(event) {
+        console.error(
+            "Error leyendo reportes pendientes",
+            event
+        );
+    };
+}
