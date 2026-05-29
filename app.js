@@ -220,5 +220,28 @@ function guardarReporteLocal() {
         errorGps: ultimaPrecision
     };
 
+if (archivoFoto) {
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+
+        reporte.fotos = [
+            {
+                nombre: archivoFoto.name,
+                mimeType: archivoFoto.type,
+                data: event.target.result
+            }
+        ];
+
+        guardarReporteEnIndexedDB(reporte);
+    };
+
+    reader.readAsDataURL(archivoFoto);
+
+} else {
+
+    reporte.fotos = [];
+
     guardarReporteEnIndexedDB(reporte);
 }
