@@ -165,58 +165,21 @@ function mostrarErrorGPS(error) {
    Conversión aproximada WGS84 Lat/Lon a UTM Zona 17S
 */
 function convertirLatLonAUTM17S(lat, lon) {
-    const a = 6378137.0;
-    const f = 1 / 298.257223563;
-    const k0 = 0.9996;
-    const e = Math.sqrt(f * (2 - f));
-    const lon0 = -81 * Math.PI / 180;
 
-    const latRad = lat * Math.PI / 180;
-    const lonRad = lon * Math.PI / 180;
+    proj4.defs(
+        "EPSG:32717",
+        "+proj=utm +zone=17 +south +datum=WGS84 +units=m +no_defs"
+    );
 
-    const N = a / Math.sqrt(1 - e * e * Math.sin(latRad) ** 2);
-    const T = Math.tan(latRad) ** 2;
-    const C = (e * e / (1 - e * e)) * Math.cos(latRad) ** 2;
-    const A = Math.cos(latRad) * (lonRad - lon0);
-
-    const M =
-        a *
-        (
-            (1 - e ** 2 / 4 - 3 * e ** 4 / 64 - 5 * e ** 6 / 256) * latRad
-            - (3 * e ** 2 / 8 + 3 * e ** 4 / 32 + 45 * e ** 6 / 1024) * Math.sin(2 * latRad)
-            + (15 * e ** 4 / 256 + 45 * e ** 6 / 1024) * Math.sin(4 * latRad)
-            - (35 * e ** 6 / 3072) * Math.sin(6 * latRad)
-        );
-
-    const easting =
-        k0 *
-        N *
-        (
-            A +
-            (1 - T + C) * A ** 3 / 6 +
-            (5 - 18 * T + T ** 2 + 72 * C - 58 * (e * e / (1 - e * e))) * A ** 5 / 120
-        ) + 500000;
-
-    let northing =
-        k0 *
-        (
-            M +
-            N *
-            Math.tan(latRad) *
-            (
-                A ** 2 / 2 +
-                (5 - T + 9 * C + 4 * C ** 2) * A ** 4 / 24 +
-                (61 - 58 * T + T ** 2 + 600 * C - 330 * (e * e / (1 - e * e))) * A ** 6 / 720
-            )
-        );
-
-    if (lat < 0) {
-        northing += 10000000;
-    }
+    const resultado = proj4(
+        "EPSG:4326",
+        "EPSG:32717",
+        [lon, lat]
+    );
 
     return {
-        easting: easting,
-        northing: northing
+        easting: resultado[0],
+        northing: resultado[1]
     };
 }
 function generarCoordenada() {
