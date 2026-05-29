@@ -247,3 +247,4 @@ if (archivoFoto) {
 
     guardarReporteEnIndexedDB(reporte);
 }
+}
