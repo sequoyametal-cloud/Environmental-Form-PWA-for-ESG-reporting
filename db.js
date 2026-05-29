@@ -219,6 +219,8 @@ function sincronizarPendientes() {
 
     request.onsuccess = async function() {
 
+    console.log("Reportes a sincronizar:", reportes);
+        
         const reportes = request.result;
 
         if (reportes.length === 0) {
