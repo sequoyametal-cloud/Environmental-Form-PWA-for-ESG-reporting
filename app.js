@@ -233,7 +233,9 @@ if (archivoFoto) {
                 data: event.target.result
             }
         ];
-
+        
+       console.log("Foto guardada en reporte:", reporte.fotos);
+        
         guardarReporteEnIndexedDB(reporte);
     };
 
