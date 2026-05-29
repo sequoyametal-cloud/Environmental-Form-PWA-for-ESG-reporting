@@ -182,3 +182,41 @@ function convertirLatLonAUTM17S(lat, lon) {
         northing: resultado[1]
     };
 }
+function guardarReporteLocal() {
+
+    const fecha = document.getElementById("fecha").value.trim();
+    const nombre = document.getElementById("nombre").value.trim();
+    const departamento = document.getElementById("departamento").value.trim();
+    const ubicacionEvento = document.getElementById("ubicacionEvento").value.trim();
+    const descripcion = document.getElementById("descripcion").value.trim();
+
+    if (!fecha || !nombre || !departamento || !ubicacionEvento || !descripcion) {
+        document.getElementById("estadoFormulario").innerHTML =
+            "<span class='error'>Complete los campos obligatorios marcados con *.</span>";
+        return;
+    }
+
+    const reporte = {
+        marcaLocal: new Date().toISOString(),
+        estadoLocal: "pendiente",
+
+        fecha: fecha,
+        nombre: nombre,
+        departamento: departamento,
+        ubicacionEvento: ubicacionEvento,
+        tipoObservacion: document.getElementById("tipoObservacion").value,
+        descripcion: descripcion,
+        categoria: document.getElementById("categoria").value,
+        accionCorrectiva: document.getElementById("accionCorrectiva").value,
+        departamentoEncargado: document.getElementById("departamentoEncargado").value,
+
+        latitud: ultimaLat,
+        longitud: ultimaLon,
+        x: ultimoEsteUTM,
+        y: ultimoNorteUTM,
+        altitud: ultimaAltitud,
+        errorGps: ultimaPrecision
+    };
+
+    guardarReporteEnIndexedDB(reporte);
+}
