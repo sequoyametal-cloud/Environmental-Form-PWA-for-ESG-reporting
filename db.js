@@ -223,6 +223,8 @@ function sincronizarPendientes() {
         
         const reportes = request.result;
 
+        console.log("Reportes a sincronizar:", reportes);
+
         if (reportes.length === 0) {
             document.getElementById("estadoFormulario").innerHTML =
                 "<span class='ok'>No hay reportes pendientes.</span>";
