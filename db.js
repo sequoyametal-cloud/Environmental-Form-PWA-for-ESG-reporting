@@ -60,21 +60,37 @@ function guardarReporteEnIndexedDB(datos) {
 
     store.add(datos);
 
-  transaction.oncomplete = function() {
+transaction.oncomplete = function() {
+
     console.log("Reporte guardado localmente");
 
     contarPendientes();
 
     document.getElementById("estadoFormulario").innerHTML =
         "<span class='ok'>Reporte guardado localmente.</span>";
+
+    document.getElementById("fecha").value = "";
+    document.getElementById("nombre").value = "";
+    document.getElementById("departamento").selectedIndex = 0;
+    document.getElementById("ubicacionEvento").value = "";
+    document.getElementById("descripcion").value = "";
+
+    document.getElementById("tipoObservacion").selectedIndex = 0;
+    document.getElementById("categoria").selectedIndex = 0;
+
+    document.getElementById("accionCorrectiva").value = "";
+    document.getElementById("departamentoEncargado").selectedIndex = 0;
+
 };
 
-    transaction.onerror = function(event) {
-        console.error(
-            "Error guardando reporte",
-            event
-        );
-    };
+transaction.onerror = function(event) {
+
+    console.error(
+        "Error guardando reporte",
+        event
+    );
+
+};
 }
 
 function contarPendientes() {
