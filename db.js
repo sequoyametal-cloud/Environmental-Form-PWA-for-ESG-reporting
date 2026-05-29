@@ -44,7 +44,7 @@ function iniciarBaseDatos() {
     };
 }
 
-function guardarReporteLocal(datos) {
+function guardarReporteEnIndexedDB(datos) {
 
     if (!db) {
         console.error("Base de datos no disponible");
@@ -60,9 +60,14 @@ function guardarReporteLocal(datos) {
 
     store.add(datos);
 
-    transaction.oncomplete = function() {
-        console.log("Reporte guardado localmente");
-    };
+  transaction.oncomplete = function() {
+    console.log("Reporte guardado localmente");
+
+    contarPendientes();
+
+    document.getElementById("estadoFormulario").innerHTML =
+        "<span class='ok'>Reporte guardado localmente.</span>";
+};
 
     transaction.onerror = function(event) {
         console.error(
