@@ -219,3 +219,14 @@ function convertirLatLonAUTM17S(lat, lon) {
         northing: northing
     };
 }
+function generarCoordenada() {
+    alert("Botón Generar coordenada funcionando");
+}
+
+function fijarCoordenada() {
+    alert("Botón Fijar coordenada funcionando");
+}
+
+function reiniciarCoordenada() {
+    alert("Botón Reiniciar funcionando");
+}
