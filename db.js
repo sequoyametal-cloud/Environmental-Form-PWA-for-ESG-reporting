@@ -159,14 +159,27 @@ function mostrarReportesPendientes() {
 
         reportes.forEach(function(reporte) {
 
-            html +=
-                "<div class='box'>" +
-                "<b>ID local:</b> " + reporte.id + "<br>" +
-                "<b>Fecha:</b> " + (reporte.fecha || "") + "<br>" +
-                "<b>Nombre:</b> " + (reporte.nombre || "") + "<br>" +
-                "<b>Ubicación:</b> " + (reporte.ubicacionEvento || "") + "<br>" +
-                "<b>Descripción:</b> " + (reporte.descripcion || "") +
-                "</div>";
+           html +=
+    "<div class='card'>" +
+
+    "<h3>Reporte #" + reporte.id + "</h3>" +
+
+    "<p><b>Fecha:</b> " +
+    (reporte.fecha || "") +
+    "</p>" +
+
+    "<p><b>Categoría:</b> " +
+    (reporte.categoria || "") +
+    "</p>" +
+
+    "<p><b>Ubicación:</b> " +
+    (reporte.ubicacionEvento || "") +
+    "</p>" +
+
+    "<p><b>Estado:</b> Pendiente de sincronización</p>" +
+
+    "</div>";
+            
         });
 
         lista.innerHTML = html;
