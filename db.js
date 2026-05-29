@@ -234,21 +234,19 @@ function sincronizarPendientes() {
 
             try {
 
-                const respuesta = await fetch(
-                    APPS_SCRIPT_URL,
-                    {
-                        method: "POST",
-                        body: JSON.stringify(reporte)
-                    }
-                );
+      await fetch(
+    APPS_SCRIPT_URL,
+    {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(reporte)
+    }
+);
 
-                const resultado = await respuesta.json();
-
-                if (resultado.ok === true) {
-                    eliminarReporteSinConfirmar(reporte.id);
-                } else {
-                    throw new Error(resultado.error || "Error desconocido");
-                }
+eliminarReporteSinConfirmar(reporte.id);
 
             } catch (error) {
 
