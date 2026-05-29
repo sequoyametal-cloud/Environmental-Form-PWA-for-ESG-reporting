@@ -11,13 +11,116 @@
 
 <body>
 
-    <h1>ENVIRONMENTAL FORM PWA</h1>
+<div class="container">
 
-    <p>
-        Sistema de reporte ambiental offline.
-    </p>
+    <div class="card header">
+        <h1>Tarjeta CONTROL AMBIENTAL 环境控制卡</h1>
+        <p id="estadoConexion">Verificando conexión...</p>
+        <p id="contadorPendientes">Reportes pendientes: 0</p>
+    </div>
 
-    <script src="app.js"></script>
+    <div class="card">
+
+        <label>Escoja la fecha / 选择日期 *</label>
+        <input type="date" id="fecha">
+
+        <label>Nombre del contribuyente / 姓名 *</label>
+        <input type="text" id="nombre">
+
+        <label>Departamento / 部门 *</label>
+        <select id="departamento">
+            <option value="">Seleccione / 请选择</option>
+            <option>Administración 行政</option>
+            <option>Cadena de Suministro 供应链</option>
+            <option>ESG 环境与社会责任</option>
+            <option>Finanzas 财务部</option>
+            <option>Geología 地质</option>
+            <option>Gerencia 总经理办公室</option>
+            <option>Infraestructura 基建部</option>
+            <option>Recursos Humanos 人力资源</option>
+            <option>Seguridad Física 安保部</option>
+            <option>SSO 安全与职业健康</option>
+            <option>Soporte Electromecánico 机电保障部</option>
+            <option>Visitante 访客</option>
+            <option>Contratista 承包商</option>
+            <option>Otros 其他</option>
+        </select>
+
+        <label>Ubicación del Evento / 行为发生的地点或位置 *</label>
+        <input type="text" id="ubicacionEvento">
+
+        <label>Tipo de Observación / 观察类型</label>
+        <select id="tipoObservacion">
+            <option value="">Seleccione / 请选择</option>
+            <option>Gestión Ambiental / 环境管理</option>
+            <option>Biodiversidad / 生物多样性</option>
+            <option>Social / 社区关系</option>
+            <option>Acción positiva / 积极行动</option>
+        </select>
+
+        <label>Descripción detallada del hallazgo / 详细描述 *</label>
+        <textarea id="descripcion"></textarea>
+
+        <label>Categoría / 类别</label>
+        <select id="categoria" multiple size="8">
+            <option>Agua y drenajes / 水体与排水系统</option>
+            <option>Suelo y erosión / 土壤与侵蚀</option>
+            <option>Residuos y sustancias peligrosas / 废弃物与危险物质</option>
+            <option>Emisiones, polvo y ruido / 排放、粉尘与噪音</option>
+            <option>Biodiversidad / 生物多样性</option>
+            <option>Flora y vegetación / 植物与植被</option>
+            <option>Fauna silvestre / 野生动物</option>
+            <option>Aspecto social/comunitario / 社会与社区事务</option>
+        </select>
+
+        <label>Acción Correctiva / 纠正措施</label>
+        <textarea id="accionCorrectiva"></textarea>
+
+        <label>Departamento Encargado de la operación / 负责运营的部门</label>
+        <select id="departamentoEncargado">
+            <option value="">Seleccione / 请选择</option>
+            <option>Depart. Infraestructura / 基建部</option>
+            <option>Depart. Soporte Electromecánico / 机电保障部</option>
+            <option>Depart. Producción y Tecnología (Geología) / 生产技术部</option>
+            <option>SSO / 安全与职业健康管理部</option>
+            <option>ESG / 环境与社会责任部</option>
+            <option>Depart. Administración / 综合部</option>
+            <option>Depart. Seguridad Física / 安保管理部</option>
+            <option>MCC</option>
+            <option>KLUANE</option>
+            <option>Desconocido / 陌生人</option>
+            <option>Depart. de Explotación / 采矿厂</option>
+            <option>Planta de Beneficio / 选矿厂</option>
+        </select>
+
+        <div class="box">
+            <p><b>Coordenadas:</b></p>
+            <p>X: <span id="xTexto">No disponible</span></p>
+            <p>Y: <span id="yTexto">No disponible</span></p>
+            <p>Altitud: <span id="altitudTexto">No disponible</span></p>
+            <p>Error GPS: <span id="errorTexto">No disponible</span></p>
+        </div>
+
+        <label>Registro Fotográfico / 上传照片</label>
+        <input type="file" id="fotos" accept="image/*" multiple>
+
+        <button class="btn-primary" onclick="guardarReporteLocal()">
+            Guardar reporte / 保存报告
+        </button>
+
+        <button class="btn-secondary" onclick="sincronizarPendientes()">
+            Sincronizar pendientes / 同步待处理报告
+        </button>
+
+        <div class="box">
+            <p id="estadoFormulario">Formulario listo.</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
 
 </body>
 
