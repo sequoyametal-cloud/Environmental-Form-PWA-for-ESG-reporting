@@ -1,12 +1,12 @@
 body{
     margin:0;
-    padding:24px;
+    padding:12px;
     background:#e8f5e9;
     font-family:Arial, Helvetica, sans-serif;
 }
 
 .container{
-    max-width:950px;
+    max-width:760px;
     margin:auto;
 }
 
