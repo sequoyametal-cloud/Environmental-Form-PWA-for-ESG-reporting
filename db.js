@@ -224,6 +224,9 @@ function sincronizarPendientes() {
         const reportes = request.result;
 
         console.log("Reportes a sincronizar:", reportes);
+        console.log("Primer reporte fotos:", reportes[0]?.fotos);
+
+        console.log("Reportes a sincronizar:", reportes);
 
         if (reportes.length === 0) {
             document.getElementById("estadoFormulario").innerHTML =
