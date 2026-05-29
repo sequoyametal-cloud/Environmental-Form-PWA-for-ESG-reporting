@@ -217,11 +217,12 @@ function sincronizarPendientes() {
     const store = transaction.objectStore(STORE_NAME);
     const request = store.getAll();
 
-    request.onsuccess = async function() {
+   request.onsuccess = async function() {
+
+    const reportes = request.result;
 
     console.log("Reportes a sincronizar:", reportes);
-        
-        const reportes = request.result;
+    console.log("Primer reporte fotos:", reportes[0]?.fotos);
 
         console.log("Reportes a sincronizar:", reportes);
         console.log("Primer reporte fotos:", reportes[0]?.fotos);
