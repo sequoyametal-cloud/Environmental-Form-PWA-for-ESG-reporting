@@ -12,10 +12,12 @@ function iniciarBaseDatos() {
         console.error("Error abriendo IndexedDB", event);
     };
 
-    request.onsuccess = function(event) {
-        db = event.target.result;
-        console.log("IndexedDB conectada correctamente");
-    };
+   request.onsuccess = function(event) {
+    db = event.target.result;
+    console.log("IndexedDB conectada correctamente");
+
+    contarPendientes();
+};
 
     request.onupgradeneeded = function(event) {
 
