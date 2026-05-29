@@ -249,7 +249,6 @@ if (archivoFoto) {
 }
 
 }
-if ("serviceWorker" in navigator) {
 
     window.addEventListener("load", function() {
 
